@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeaderMenus } from 'src/app/Models/header-menus.dto';
-import { HeaderMenusService } from 'src/app/Services/header-menus.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {HeaderMenus} from 'src/app/Models/header-menus.dto';
+import {HeaderMenusService} from 'src/app/Services/header-menus.service';
+import {LocalStorageService} from 'src/app/Services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  dashboard(): void {
+/*  dashboard(): void {
     this.router.navigateByUrl('dashboard');
   }
 
@@ -59,6 +59,10 @@ export class HeaderComponent implements OnInit {
 
   profile(): void {
     this.router.navigateByUrl('profile');
+  }*/
+
+  navigationTo(route: string): void {
+    this.router.navigateByUrl(route);
   }
 
   logout(): void {

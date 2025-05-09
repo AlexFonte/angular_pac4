@@ -1,6 +1,6 @@
 import {FormatDatePipe} from './format-date.pipe';
 
-describe('FormatDatePipe', () => {
+describe('Test pipe: FormatDatePipe', () => {
 
   let pipe: FormatDatePipe;
 
@@ -29,7 +29,7 @@ describe('FormatDatePipe', () => {
 
   // Test 4: Donada una data i l’argument 3 retorna el format esperat
   it('should format date as dd/mm/yyyy when argument is 3', () => {
-    const date =new Date(2025, 4, 5);
+    const date = new Date(2025, 4, 5);
     const result = pipe.transform(date, 3);
     expect(result).toBe('05/05/2025');
   });
