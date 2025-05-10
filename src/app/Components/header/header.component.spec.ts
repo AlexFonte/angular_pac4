@@ -93,4 +93,11 @@ describe('Test rutes: HeaderComponent', () => {
     expect(spy).toHaveBeenCalledWith('dashboard');
   });
 
+  it('should navigate to logout', () => {
+    const router = TestBed.inject(Router);
+    const spy = spyOn(router, 'navigateByUrl');
+    component.logout();
+    expect(spy).toHaveBeenCalledWith('home');
+  });
+
 });
