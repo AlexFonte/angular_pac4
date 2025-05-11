@@ -3,13 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 import {PostService} from "./post.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {PostDTO} from "../Models/post.dto";
-import {CategoryDTO} from "../Models/category.dto";
 
-const categoriesListMock: CategoryDTO[] = [
-  {userId: '', categoryId: '1', css_color: '', description: '', title: ''},
-  {userId: '', categoryId: '2', css_color: '', description: '', title: ''},
-  {userId: '', categoryId: '3', css_color: '', description: '', title: ''},
-];
 
 const postMock: PostDTO = {
   postId: '1',
@@ -23,7 +17,7 @@ const postMock: PostDTO = {
   userAlias: 'Test User'
 };
 
-const postsListMock: PostDTO[] = [postMock];
+const listPostMock: PostDTO[] = [postMock];
 
 const deleteResponse = { affected: 1 };
 const updateResponse = { affected: 1 };
@@ -55,22 +49,22 @@ describe('Test service: PostService', () => {
 
   it('GET method and getPosts: return a list of posts', () => {
     service.getPosts().subscribe((resp: PostDTO[]) => {
-      expect(resp).toEqual(postsListMock);
+      expect(resp).toEqual(listPostMock);
     });
 
     const req = httpMock.expectOne(`http://localhost:3000/posts`);
     expect(req.request.method).toBe('GET');
-    req.flush(postsListMock);
+    req.flush(listPostMock);
   });
 
   it('GET method and getPostsByUserId: return a list of posts by UserId', () => {
     service.getPostsByUserId('1').subscribe((resp: PostDTO[]) => {
-      expect(resp).toEqual(postsListMock);
+      expect(resp).toEqual(listPostMock);
     });
 
     const req = httpMock.expectOne(`http://localhost:3000/users/posts/1`);
     expect(req.request.method).toBe('GET');
-    req.flush(postsListMock);
+    req.flush(listPostMock);
   });
 
   it('POST method and createPost: return the new post', () => {

@@ -33,7 +33,10 @@ describe('Test rutes: CategoriesListComponent', () => {
     mockLocalStorageService.get.and.returnValue('1');
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([{path: 'user/category', component: TemporalComponentForRoutes}])],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([{
+        path: 'user/category/',
+        component: TemporalComponentForRoutes
+      }])],
       declarations: [CategoriesListComponent],
       providers: [
         CategoryService,
