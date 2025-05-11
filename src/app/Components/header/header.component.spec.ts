@@ -3,9 +3,13 @@ import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 import {HeaderComponent} from "./header.component";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Router} from "@angular/router";
+import {By} from "@angular/platform-browser";
 
 class TemporalComponentForRoutes {
 }
+
+const menuNotAuth = ['Dashboard', 'Home', 'Login', 'Register'];
+const menuAuth = ['Dashboard', 'Home', 'Admin posts', 'Admin categories', 'Profile', 'Logout'];
 
 describe('Test rutes: HeaderComponent', () => {
   let component: HeaderComponent;
@@ -98,6 +102,40 @@ describe('Test rutes: HeaderComponent', () => {
     const spy = spyOn(router, 'navigateByUrl');
     component.logout();
     expect(spy).toHaveBeenCalledWith('home');
+  });
+
+  it('View menu test: should display menu items [ Dashboard, Home, Admin posts, Admin categories, Profile, Logout ] for authenticated users', () => {
+    // Simulacio d'autenticació
+    component.showAuthSection = true;
+    component.showNoAuthSection = false;
+    fixture.detectChanges();
+
+    // Obtenim els elements del menú
+    const buttomItems = fixture.debugElement.queryAll(By.css('button')); //By.css('button'): Selecciona todos los botones del menú.
+    //Etreiem els text de cada un dels buttons del menu
+    const buttonTexts = buttomItems.map(item => item.nativeElement.textContent.trim());
+
+    // Verifica los elementos esperados
+    menuAuth.forEach(expectText => {
+      expect(buttonTexts).toContain(expectText);
+    });
+  });
+
+  it('View menu test: should display menu items [ Dashboard, Home, Login, Register ] for non authenticated users', () => {
+    // Simulacio d'autenticació
+    component.showAuthSection = false;
+    component.showNoAuthSection = true;
+    fixture.detectChanges();
+
+    // Obtenim els elements del menú
+    const buttomItems = fixture.debugElement.queryAll(By.css('button')); //By.css('button'): Selecciona todos los botones del menú.
+    //Etreiem els text de cada un dels buttons del menu
+    const buttonTexts = buttomItems.map(item => item.nativeElement.textContent.trim());
+
+    // Verifica los elementos esperados
+    menuNotAuth.forEach(expectText => {
+      expect(buttonTexts).toContain(expectText);
+    });
   });
 
 });
