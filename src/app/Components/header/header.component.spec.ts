@@ -115,7 +115,7 @@ describe('Test rutes: HeaderComponent', () => {
     //Etreiem els text de cada un dels buttons del menu
     const buttonTexts = buttomItems.map(item => item.nativeElement.textContent.trim());
 
-    // Verifica los elementos esperados
+    // Verifica que los elemetos del menu sean los de autenticado
     menuAuth.forEach(expectText => {
       expect(buttonTexts).toContain(expectText);
     });
@@ -132,7 +132,7 @@ describe('Test rutes: HeaderComponent', () => {
     //Etreiem els text de cada un dels buttons del menu
     const buttonTexts = buttomItems.map(item => item.nativeElement.textContent.trim());
 
-    // Verifica los elementos esperados
+    // Verifica que los elemetos del menu sean los de no autenticado
     menuNotAuth.forEach(expectText => {
       expect(buttonTexts).toContain(expectText);
     });
