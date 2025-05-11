@@ -1,12 +1,12 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeaderMenus } from 'src/app/Models/header-menus.dto';
-import { PostDTO } from 'src/app/Models/post.dto';
-import { HeaderMenusService } from 'src/app/Services/header-menus.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { PostService } from 'src/app/Services/post.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {HeaderMenus} from 'src/app/Models/header-menus.dto';
+import {PostDTO} from 'src/app/Models/post.dto';
+import {HeaderMenusService} from 'src/app/Services/header-menus.service';
+import {LocalStorageService} from 'src/app/Services/local-storage.service';
+import {PostService} from 'src/app/Services/post.service';
+import {SharedService} from 'src/app/Services/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,7 @@ import { SharedService } from 'src/app/Services/shared.service';
 export class HomeComponent {
   posts!: PostDTO[];
   showButtons: boolean;
+
   constructor(
     private postService: PostService,
     private localStorageService: LocalStorageService,
@@ -36,6 +37,7 @@ export class HomeComponent {
       }
     );
   }
+
   private loadPosts(): void {
     let errorResponse: any;
     const userId = this.localStorageService.get('user_id');
